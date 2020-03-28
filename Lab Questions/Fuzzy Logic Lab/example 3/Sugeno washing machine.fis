@@ -1,0 +1,49 @@
+[System]
+Name='Sugeno washing machine'
+Type='sugeno'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='Dirtiness'
+Range=[0 100]
+NumMFs=3
+MF1='low':'trimf',[0 0 50]
+MF2='medium':'trimf',[0 50 100]
+MF3='high':'trimf',[50 100 100]
+
+[Input2]
+Name='dirt-type'
+Range=[0 100]
+NumMFs=3
+MF1='no-grease':'trimf',[0 0 50]
+MF2='medium-grease':'trimf',[0 50 100]
+MF3='greasy':'trimf',[50 100 100]
+
+[Output1]
+Name='wash-length'
+Range=[0 1]
+NumMFs=5
+MF1='very-short':'constant',[10]
+MF2='short':'constant',[12]
+MF3='medium':'constant',[20]
+MF4='long':'constant',[40]
+MF5='verylong':'constant',[60]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 2 (1) : 1
+1 3, 3 (1) : 1
+2 1, 2 (1) : 1
+2 2, 3 (1) : 1
+2 3, 4 (1) : 1
+3 1, 3 (1) : 1
+3 2, 4 (1) : 1
+3 3, 5 (1) : 1

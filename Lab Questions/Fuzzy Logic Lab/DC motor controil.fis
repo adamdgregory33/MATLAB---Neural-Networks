@@ -1,0 +1,33 @@
+[System]
+Name='DC motor controil'
+Type='mamdani'
+Version=2.0
+NumInputs=1
+NumOutputs=1
+NumRules=3
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='RPM'
+Range=[2304 2536]
+NumMFs=3
+MF1='Too-Slow':'trimf',[2304 2362 2420]
+MF2='About-Right':'trimf',[2390 2420 2450]
+MF3='Too-Fast':'trimf',[2420 2478 2536]
+
+[Output1]
+Name='Motor-Voltage'
+Range=[2.32 2.48]
+NumMFs=3
+MF1='Slow-down':'trimf',[2.32 2.36 2.4]
+MF2='Dont-Change-Much':'trimf',[2.38 2.4 2.42]
+MF3='Speed-up':'trimf',[2.4 2.44 2.48]
+
+[Rules]
+1, 3 (1) : 1
+2, 2 (1) : 1
+3, 1 (1) : 1

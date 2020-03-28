@@ -1,0 +1,74 @@
+[System]
+Name='Sugeno washing machine 5 sigm'
+Type='sugeno'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=30
+AndMethod='min'
+OrMethod='max'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='Dirtiness'
+Range=[0 100]
+NumMFs=5
+MF1='low':'psigmf',[21.97 0 -0.2289 15]
+MF2='medium':'dsigmf',[0.2197 37.5 0.2197 62.5]
+MF3='high':'psigmf',[0.2289 85 -21.97 100]
+MF4='low-mid':'dsigmf',[0.2747 10 0.2747 30]
+MF5='mid-high':'dsigmf',[0.2747 70 0.2747 90]
+
+[Input2]
+Name='dirt-type'
+Range=[0 100]
+NumMFs=5
+MF1='no-grease':'dsigmf',[21.97 0 0.1831 15]
+MF2='medium-grease':'dsigmf',[0.2197 37.5 0.2197 62.5]
+MF3='greasy':'dsigmf',[0.1831 85 21.97 100]
+MF4='low-mid':'psigmf',[0.2747 10 -0.2747 30]
+MF5='mid-high':'dsigmf',[0.2747 70 0.2747 90]
+
+[Output1]
+Name='wash-length'
+Range=[0 1]
+NumMFs=5
+MF1='very-short':'constant',[10]
+MF2='short':'constant',[12]
+MF3='medium':'constant',[20]
+MF4='long':'constant',[40]
+MF5='verylong':'constant',[60]
+
+[Rules]
+1 1, 1 (1) : 1
+1 4, 1 (1) : 1
+1 2, 2 (1) : 1
+1 5, 2 (1) : 1
+1 3, 3 (1) : 1
+4 1, 1 (1) : 1
+4 4, 2 (1) : 1
+4 2, 3 (1) : 1
+4 5, 4 (1) : 1
+4 3, 4 (1) : 1
+2 1, 2 (1) : 1
+2 4, 3 (1) : 1
+2 2, 3 (1) : 1
+2 5, 4 (1) : 1
+2 3, 5 (1) : 1
+3 1, 2 (1) : 1
+3 4, 3 (1) : 1
+3 2, 4 (1) : 1
+3 5, 4 (1) : 1
+3 3, 5 (1) : 1
+5 1, 3 (1) : 1
+5 4, 3 (1) : 1
+5 2, 4 (1) : 1
+5 5, 4 (1) : 1
+5 3, 5 (1) : 1
+3 1, 3 (1) : 1
+3 4, 3 (1) : 1
+3 2, 4 (1) : 1
+3 5, 5 (1) : 1
+3 3, 5 (1) : 1

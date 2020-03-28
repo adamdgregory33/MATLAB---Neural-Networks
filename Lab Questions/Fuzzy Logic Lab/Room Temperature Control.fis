@@ -1,0 +1,41 @@
+[System]
+Name='Room Temperature Control'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=4
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Temperature'
+Range=[0 100]
+NumMFs=2
+MF1='Low':'trapmf',[0 0 20.83 37.5]
+MF2='High':'trapmf',[29.17 45.83 100 100]
+
+[Input2]
+Name='Humidity'
+Range=[0 100]
+NumMFs=2
+MF1='low':'trapmf',[0 0 25 65]
+MF2='high':'trapmf',[45 85 100 100]
+
+[Output1]
+Name='Cooling-Rate'
+Range=[0 100]
+NumMFs=4
+MF1='Very-Low':'trapmf',[0 0 15 30]
+MF2='Low':'trimf',[20 40 60]
+MF3='High':'trapmf',[80 90 100 100]
+MF4='Medium':'trimf',[50 70 90]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 2 (1) : 1
+2 2, 3 (1) : 1
+2 1, 4 (1) : 1
